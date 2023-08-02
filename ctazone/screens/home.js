@@ -20,7 +20,9 @@ export default function Home({ navigation }) {
 
       const renderItem = ({ item }) => (
         <TouchableOpacity onPress={() => pressHandler(item.key)}>
-          <Text style={globalStyles.titleText}>{item.title}</Text>
+            <View style={globalStyles.buttonContainer}>
+                <Text style={globalStyles.buttonText}>{item.title}</Text>
+            </View>
         </TouchableOpacity>
       );
     

@@ -26,4 +26,12 @@ export const globalStyles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center', // 버튼 텍스트를 가운데로 정렬
     },
+    buttonContainer: {
+        backgroundColor: 'skyblue',
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        marginBottom: 10,
+        alignItems: 'center',
+      },
 });
