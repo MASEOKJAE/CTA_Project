@@ -1,13 +1,16 @@
 import React, { useState, useEffect }  from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, FlatList, Modal } from 'react-native';
 import { globalStyles } from '../styles/global';
+import Card from '../shared/card';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function Home({ navigation }) {
+    const [modalOpen, setModalOepn] = useState(false);
     const [reviews, setReviews] = useState([
         { title: 'QR 기기 인식', rating: 5, body: 'Iorem ipsum', key: '1' },
         { title: '기기 온도 체크', rating: 4, body: 'Iorem ipsum', key: '2' },
         { title: 'Not so "Final" Fantasy', rating: 3, body: 'Iorem ipsum', key: '3' },
-    ])
+    ]);
 
     const pressHandler = (key) => {
         if(key === '1')
@@ -20,9 +23,9 @@ export default function Home({ navigation }) {
 
       const renderItem = ({ item }) => (
         <TouchableOpacity onPress={() => pressHandler(item.key)}>
-            <View style={globalStyles.buttonContainer}>
-                <Text style={globalStyles.buttonText}>{item.title}</Text>
-            </View>
+            <Card>
+                <Text style={globalStyles.titleText}>{item.title}</Text>
+            </Card>
         </TouchableOpacity>
       );
     
@@ -37,6 +40,30 @@ export default function Home({ navigation }) {
             >
                 <Text style={globalStyles.buttonText}>Review Dets</Text>
             </TouchableOpacity> */}
+            <Modal visible={modalOpen} animationType='slide'>
+                <View style={StyleSheet.modalContent}>
+                    <MaterialIcons 
+                        name='close'
+                        size={24}
+                        // 전개 연산자(배열이나 객체의 요소를 "전개"하여 새로운 배열이나 객체를 생성하거나 함수에 인자로 전달) 예시
+                        // const obj1 = { a: 1, b: 2 };
+                        // const obj2 = { b: 3, c: 4 };
+                        // const combinedObj = { ...obj1, ...obj2 };
+                        // console.log(combinedObj); // { a: 1, b: 3, c: 4 }
+                        style={{ ...styles.modalToggle, ...styles.modalClose }}
+                        onPress={() => setModalOepn(false)}
+                    />
+                    <Text> Hello from the modal :) </Text>
+                </View>
+            </Modal>
+
+            <MaterialIcons 
+                name='add'
+                size={24}
+                style={styles.modalToggle}
+                onPress={() => setModalOepn(true)}
+            />
+
              <FlatList
                 data={reviews}
                 renderItem={renderItem}
@@ -45,6 +72,24 @@ export default function Home({ navigation }) {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    modalToggle: {
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: '#f2f2f2',
+        padding: 10,
+        borderRadius: 10,
+        alignSelf: 'center'
+    },
+    modalClose:  {
+        marginTop: 20,
+        marginBottom: 0,
+    },
+    modalContent: {
+        flex: 1,
+    }
+})
 
 
 // [알아두면 좋은 문법 차이]

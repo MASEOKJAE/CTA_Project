@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function Header({ navigation }) {
@@ -10,7 +10,7 @@ export default function Header({ navigation }) {
 
     return (
         <View style={styles.header}>
-            <MaterialIcons name='menu' size={28} onPress={openMenu} style={styles.icon}/> 
+                <MaterialIcons name='menu' size={28} onPress={openMenu} style={styles.icon}/> 
             <View>
                 <Text style={styles.headerText}>CTA System</Text>
             </View>
@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
     },
     icon: {
         position: 'absolute',
-        left: 16,
+        left: -50,
     }
 });
