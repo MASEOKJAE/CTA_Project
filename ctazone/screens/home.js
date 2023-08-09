@@ -2,7 +2,8 @@ import React, { useState, useEffect }  from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, FlatList, Modal } from 'react-native';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/card';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, Foundation } from '@expo/vector-icons';
+import Form from './form';
 
 export default function Home({ navigation }) {
     const [modalOpen, setModalOepn] = useState(false);
@@ -41,7 +42,7 @@ export default function Home({ navigation }) {
                 <Text style={globalStyles.buttonText}>Review Dets</Text>
             </TouchableOpacity> */}
             <Modal visible={modalOpen} animationType='slide'>
-                <View style={StyleSheet.modalContent}>
+                <View style={styles.modalContent}>
                     <MaterialIcons 
                         name='close'
                         size={24}
@@ -53,12 +54,12 @@ export default function Home({ navigation }) {
                         style={{ ...styles.modalToggle, ...styles.modalClose }}
                         onPress={() => setModalOepn(false)}
                     />
-                    <Text> Hello from the modal :) </Text>
+                    <Form />
                 </View>
             </Modal>
 
-            <MaterialIcons 
-                name='add'
+            <Foundation 
+                name='clipboard-pencil'
                 size={24}
                 style={styles.modalToggle}
                 onPress={() => setModalOepn(true)}
