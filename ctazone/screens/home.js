@@ -10,7 +10,7 @@ export default function Home({ navigation }) {
     const [reviews, setReviews] = useState([
         { title: 'QR 기기 인식', rating: 5, body: 'Iorem ipsum', key: '1' },
         { title: '기기 온도 체크', rating: 4, body: 'Iorem ipsum', key: '2' },
-        { title: 'Not so "Final" Fantasy', rating: 3, body: 'Iorem ipsum', key: '3' },
+        { title: '문제 기기 관리', rating: 3, body: 'Iorem ipsum', key: '3' },
     ]);
 
     const pressHandler = (key) => {
@@ -19,7 +19,7 @@ export default function Home({ navigation }) {
         else if(key === '2')
             navigation.navigate('ColorDetect');
         else
-            alert("test 중!!!");
+            navigation.navigate('ProblemAdmin');
       }
 
       const renderItem = ({ item }) => (

@@ -3,9 +3,11 @@ import { createAppContainer } from 'react-navigation';
 import Home from '../screens/home';
 import QRScan from '../screens/qrScan';
 import ColorDetect from '../screens/colorDetect';
+import ProblemAdmin from '../screens/problemAdmin';
 import ReviewDetails from '../screens/reviewDetails';
 import Header from '../shared/header';
 import React from 'react';
+import ProblemDetails from '../screens/problemDetails';
 
 const screens = {
     Home: {
@@ -27,7 +29,19 @@ const screens = {
         navigationOptions: {
             title: '설비 온도 체크',
         },
-    }
+    },
+    ProblemAdmin: {
+        screen: ProblemAdmin,
+        navigationOptions: {
+            title: '문제 기기 관리',
+        },
+    },
+    ProblemDetails: {
+        screen: ProblemDetails,
+        navigationOptions: {
+            title: '문제 세부 내용',
+        }
+    },
 }
 
 const HomeStack = createStackNavigator(screens, {
