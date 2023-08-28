@@ -11,7 +11,8 @@ export default function From({ addProblem }) {
                 // initialValues: 초기 값으로서, 폼 내부의 필드들의 초기 상태를 정의
                 initialValues={{ name: '', contents: '', state: '' }}
                 // onSubmit: 제출(Submit) 이벤트가 발생했을 때 실행되는 콜백 함수
-                onSubmit={(values) => {
+                onSubmit={(values, actions) => {
+                    actions.resetForm();
                     addProblem(values);
                 }} 
             >

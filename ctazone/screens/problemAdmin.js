@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
-import { StyleSheet, View, Modal, TouchableOpacity, FlatList, Text } from 'react-native';
+import { StyleSheet, View, Modal, TouchableOpacity, FlatList, 
+    Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { globalStyles } from '../styles/global';
 import { MaterialIcons, Foundation } from '@expo/vector-icons';
 import Form from './form';
@@ -19,13 +20,13 @@ export default function ProblemAdmin({ navigation }) {
     //          parameters: 함수의 매개변수 목록을 지정. 0개 이상의 매개변수를 받기 가능
     //          =>: 화살표 문법을 나타냄
     //          { ... }: 함수의 내용을 감싸는 중괄호 블록, 함수가 하나의 표현식만 반환하는 경우 중괄호와 return 키워드를 생략
-    
+
     const addProblem = (problem) => {
         problem.key = Math.random().toString();
         setProblems((currentProblems) => {
             return [problem, ...currentProblems]
         });
-        setModalOepn(false);
+        // setModalOepn(false);
     }
 
     const renderItem = ({ item }) => (
@@ -40,29 +41,25 @@ export default function ProblemAdmin({ navigation }) {
 
     return (
         <View style={globalStyles.container}>
-            {/* <Text style={globalStyles.titleText}>Home Screen</Text>
-            <TouchableOpacity
-                style={globalStyles.button}
-                onPress={() => pressHandler()} 
-            >
-                <Text style={globalStyles.buttonText}>Review Dets</Text>
-            </TouchableOpacity> */}
             <Modal visible={modalOpen} animationType='slide'>
-                <View style={styles.modalContent}>
-                    <MaterialIcons
-                        name='close'
-                        size={24}
-                        // 전개 연산자(배열이나 객체의 요소를 "전개"하여 새로운 배열이나 객체를 생성하거나 함수에 인자로 전달) 예시
-                        // const obj1 = { a: 1, b: 2 };
-                        // const obj2 = { b: 3, c: 4 };
-                        // const combinedObj = { ...obj1, ...obj2 };
-                        // console.log(combinedObj); // { a: 1, b: 3, c: 4 }
-                        style={{ ...styles.modalToggle, ...styles.modalClose }}
-                        onPress={() => setModalOepn(false)}
-                    />
-                    <Form addProblem={addProblem} />
+                {/* TouchableWithoutFeedback 통해 keyboard 창이 화면만 터치해도 사라지게 설정 */}
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <View style={styles.modalContent}>
+                        <MaterialIcons
+                            name='close'
+                            size={24}
+                            // 전개 연산자(배열이나 객체의 요소를 "전개"하여 새로운 배열이나 객체를 생성하거나 함수에 인자로 전달) 예시
+                            // const obj1 = { a: 1, b: 2 };
+                            // const obj2 = { b: 3, c: 4 };
+                            // const combinedObj = { ...obj1, ...obj2 };
+                            // console.log(combinedObj); // { a: 1, b: 3, c: 4 }
+                            style={{ ...styles.modalToggle, ...styles.modalClose }}
+                            onPress={() => setModalOepn(false)}
+                        />
+                        <Form addProblem={addProblem} />
 
-                </View>
+                    </View>
+                </TouchableWithoutFeedback>
             </Modal>
 
             <Foundation 
